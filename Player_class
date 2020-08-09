@@ -1,0 +1,79 @@
+import java.util.Scanner;
+public class Players {
+	
+	  // method used to record the amount of each pile A,B and C
+    //Also check if the value is of appropriate type and if its positive
+    	
+		public static int InitialSize (String Letter ){
+			int number = 0;
+						
+			while(true){
+		   
+		    Scanner Pile = new Scanner(System.in);
+		    System.out.println("Enter a positive integer for pile" +Letter+":");
+		    	    
+		    if(Pile.hasNextInt() == true ) {  number =Pile.nextInt();if (number >0 ) {break;}}
+		    System.out.println("Invalide entry please enter a positive integer for pile "+Letter+":");
+		   }
+		   
+		    return number;
+		}
+		//This method ask player to choose a Pile
+		public static String PileChoice (String Name) {  
+		
+		System.out.println(Name +"  Please choose a pile or enter q to exit");
+		Scanner choice = new Scanner(System.in);
+		String Choice = choice.next();	
+		if (Choice.equals("q")) { System.out.println("Goodbye"); System.exit(0);}
+		
+		
+		while ((!Choice.equals("A")&& !Choice.equals("B")&&!Choice.equals("C")) ) {
+		if (Choice.equals("q")) { System.out.println("Goodbye"); System.exit(0);}
+		
+		System.out.println("Please Check your choice and try again remember a chosen tile must not be empty");
+	    choice = new Scanner(System.in);
+	    System.out.println(Name +"  Please choose a pile or enter q to exit");
+	    
+		 choice = new Scanner(System.in);
+		 Choice = choice.next();	
+	
+}
+
+		return Choice;
+}
+	
+		
+		//This method ask player how much to remove from each pile
+		//The method has a bug and sometimes the value needs to be inserted twice
+		public static int Remove (String Choice, int Pile) {  
+		
+			int Amount = 0;
+			
+			System.out.println("Hwo many to remove from pile: " +Choice + " or enter any negative integer to exit");
+			System.out.println("please enter the amount you want to remove twice");
+			Scanner choice = new Scanner(System.in);
+
+			while (true){
+			
+			 while  (choice.hasNextInt() == false ||choice.nextInt()>Pile)
+					 {
+				
+				 System.out.println("wrong input");
+				System.out.println("Hwo many to remove from pile: " +Choice + " or enter any negative integer to exit");
+				System.out.println("please enter the amount you want to remove twice");
+				choice = new Scanner(System.in);
+					 
+			 }	 
+					
+			 
+			 Amount = choice.nextInt();	
+			 if (Amount < 0) { System.out.println("Goodbye"); System.exit(0);}	
+			
+			 else if (Amount <=Pile) {break; }
+			}
+			 
+	
+		return Amount;
+		}
+	
+		}
